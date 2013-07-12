@@ -1,5 +1,7 @@
 //Container
-pontoon = function() {
+var pontoon = function() {
+
+
 
     var dcards = document.getElementById('dcards');
     var pcards = document.getElementById('pcards');
@@ -201,8 +203,9 @@ pontoon = function() {
         return (this.getHand());
     };
 
-    var twist = function(argument) {
-        // body...
+    var twist = function() {
+        myHand.hitMe;
+        pcards.innerHTML = "<p>" + myHand.printHand + "</p>";
     };
 
     //Rubbish, to delete
@@ -239,10 +242,10 @@ pontoon = function() {
         }*/
 
     twistButton.addEventListener('click', function () {
-        twist()
+        twist();
     }, false);
     stickButton.addEventListener('click', function () {
-        stick()
+        stick();
     }, false);
 
     this.startRound = function() {
@@ -253,15 +256,19 @@ pontoon = function() {
     //Deal the cards
     var myHand = new Hand(stack, 2);
     var dealersHand = new Hand (stack, 2);
+
+    //Show player their cards
+    pcards.innerHTML = "<p>" + myHand.printHand() + "</p>";
     };
-    //Let's go!
+    
     startRound();
+
 };
 
 
 
 
-    //Tests
+    //Tests - OLD
     /*
     var test0 = new Card (1, 1);
     console.log(test0.getSuit());
