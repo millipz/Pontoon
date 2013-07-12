@@ -1,13 +1,10 @@
 //Container
 pontoon = function() {
 
-    var dcardsButton = document.getElementById('dcards');
-    var pcardsButton = document.getElementById('pcards');
+    var dcards = document.getElementById('dcards');
+    var pcards = document.getElementById('pcards');
     var twistButton = document.getElementById('twist');
     var stickButton = document.getElementById('stick');
-
-    twistButton.addEventListener('click', twist(), false);
-    stickButton.addEventListener('click', stick(), false);
 
     // Card Constructor
     function Card(s, n) {
@@ -208,13 +205,17 @@ pontoon = function() {
         // body...
     };
 
-    var playAsDealer = function(s) {
+    //Rubbish, to delete
+    /*var playAsDealer = function(s) {
         var myHand = new Hand(2);
         while (myHand.getScore <= 17) {
             myHand.hitMe(s);
         }
         return myHand;
     };
+
+
+
 
     var playAsUser = function(s) {
         if (myHand.getScore === 0) {
@@ -225,6 +226,7 @@ pontoon = function() {
         }
         pcards.innerHTML = "<p>" + myHand.printHand() + "</p>";
     };
+    */
 
         //This is old code from the tutorial
         /*while (decision === true) {
@@ -236,18 +238,24 @@ pontoon = function() {
             }
         }*/
 
-    this.playRound = function() {
+    twistButton.addEventListener('click', function () {
+        twist()
+    }, false);
+    stickButton.addEventListener('click', function () {
+        stick()
+    }, false);
+
+    this.startRound = function() {
     //Right, let's take some cards
     var stack = new Deck(1);
     stack.shuffle();
-    stack.shuffle();
 
-    //User goes first...
-    playAsUser(stack);
+    //Deal the cards
+    var myHand = new Hand(stack, 2);
+    var dealersHand = new Hand (stack, 2);
     };
-
     //Let's go!
-    playRound();
+    startRound();
 };
 
 
