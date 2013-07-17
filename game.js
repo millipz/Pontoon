@@ -1,15 +1,14 @@
 (function(window, document, undefined) {
     "use strict";
 
-    var dcards = document.getElementById('dcards');
-    var pcards = document.getElementById('pcards');
-    var twistButton = document.getElementById('twist');
-    var stickButton = document.getElementById('stick');
+    var dcards = document.getElementById('dcards'),
+        pcards = document.getElementById('pcards'),
+        twistButton = document.getElementById('twist'),
+        stickButton = document.getElementById('stick');
 
     // Card Constructor
     function Card(s, n) {
-        var suit = s;
-        var number = n;
+        var suit = s, number = n;
 
         //Getters
         this.getSuit = function() {
@@ -77,8 +76,9 @@
     // Deck Constructor
     function Deck(d) {
 
-        //Number of values, number of suits, empty array to hold cards
-        var nn = 13,
+        //Min value, max value, number of suits, empty array to hold cards
+        var minn =  1,
+            maxn = 13,
             ss = 4,
             Cards = [],
             i, j, k;
@@ -86,7 +86,7 @@
         //Create the cards;
         for (i = d; i > 0; i--) {
             for (j = ss; j > 0; j--) {
-                for (k = nn; k > 0; k--) {
+                for (k = maxn; k >= minn; k--) {
                     Cards.push(new Card(j, k));
                 }
             }
@@ -121,11 +121,7 @@
 
     // Hand Constructor from Deck s with n number of cards
     function Hand(s, n) {
-
-        //Empty Hand
         var Cards = [];
-
-        //Initial Deal
         Cards = Cards.concat(s.Deal(n));
 
         //Getter
@@ -137,63 +133,58 @@
         this.addCards = function(c) {
             if(Array.isArray(c)) {
                 Cards = Cards.concat(c);
-            } else {
-                console.log("You can't add that to a hand!");
             }
         };
 
         //Print Hand gives a string description of the hand
         this.printHand = function() {
-            var cardList = "",
-                i;
-
+            var cardList = "", i;
             for (i = Cards.length - 1; i >= 0; i--) {
                 cardList = cardList + Cards[i].getCard() + ", ";
             }
-
             return cardList;
         };
     }
 
     //Extend Hand for Pontoon Scoring
-
     Hand.prototype.getScore = function() {
         //Empty Score, no aces, counters
         var cardTotal = 0, aces = 0, i, j;
-
         //Count Aces
         for (i = 0; i<this.getHand().length; i++) {
             if ((this.getHand())[i].getValue() === 11) {
                 aces++;
             }
         }
-
         //Highest Score
         for (j = 0; j<this.getHand().length; j++) {
             cardTotal = cardTotal + (this.getHand())[j].getValue();
         }
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+        //Check for Pontoon
+=======
+=======
+>>>>>>> 852eda9bc62f88940bd5daa26d267a5141d5839a
         //Check for Blackjack
+>>>>>>> 852eda9bc62f88940bd5daa26d267a5141d5839a
         if ((this.getHand().length) === 2 && cardTotal === 21) {
             return 100;
         }
-
         //Change Aces to One Until < 21
         while (aces > 0 && cardTotal > 21) {
             cardTotal = cardTotal - 10;
             aces--;
         }
-
         //Check if bust
         if (cardTotal > 21) {
             return 0;
         }
-
         //Check for 5 card trick
         if ((this.getHand()).length >= 5) {
             return 50;
         }
-
         //Return the score 
         return cardTotal;
     };
@@ -205,7 +196,6 @@
     };
 
     function startRound() {
-
         //Right, let's take some cards
         var stack = new Deck(1);
         stack.shuffle();
@@ -228,10 +218,13 @@
 
         //Sticking (includes Dealer play)
         function stick() {
-            dcards.innerHTML = "<p>" + dealersHand.printHand() + "</p>";
-            while ((dealersHand.getScore() < 17) && (dealersHand.getScore() !== 0)) {
+            dcards.innerHTML = "<p>" +
+              dealersHand.printHand() + "</p>";
+            while ((dealersHand.getScore() < 17) &&
+                   (dealersHand.getScore() !== 0)) {
                 dealersHand.hitMe(stack);
-                dcards.innerHTML = "<p>" + dealersHand.printHand() + "</p>";
+                dcards.innerHTML = "<p>" +
+                  dealersHand.printHand() + "</p>";
             }
             if (myHand.getScore() > dealersHand.getScore()) {
                 alert("you won!");
@@ -251,10 +244,8 @@
                 reset();
             }
         }
-
     twistButton.addEventListener('click', twist, false);
     stickButton.addEventListener('click', stick, false);
     }
-
     startRound();
 }(this, this.document));
