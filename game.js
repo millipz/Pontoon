@@ -36,16 +36,16 @@
 
         switch (this.getSuit()) {
         case 1:
-            suitName = "clubs";
+            suitName = "♣";
             break;
         case 2:
-            suitName = "diamonds";
+            suitName = "♦";
             break;
         case 3:
-            suitName = "hearts";
+            suitName = "♥";
             break;
         case 4:
-            suitName = "spades";
+            suitName = "♠";
             break;
         default:
             suitName = "suitName error";
@@ -54,23 +54,23 @@
 
         switch (this.getNumber()) {
         case 1:
-            cardName = "ace";
+            cardName = "A";
             break;
         case 11:
-            cardName = "jack";
+            cardName = "J";
             break;
         case 12:
-            cardName = "queen";
+            cardName = "Q";
             break;
         case 13:
-            cardName = "king";
+            cardName = "K";
             break;
         default:
             cardName = String(this.getNumber());
             break;
         }
 
-        return cardName + " of " + suitName;
+        return cardName + suitName;
     };
 
     // Deck Constructor
