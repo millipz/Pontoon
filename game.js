@@ -160,7 +160,7 @@
         for (j = 0; j<this.getHand().length; j++) {
             cardTotal = cardTotal + (this.getHand())[j].getValue();
         }
-        //Check for Blackjack
+        //Check for Pontoon
         if ((this.getHand().length) === 2 && cardTotal === 21) {
             return 100;
         }
