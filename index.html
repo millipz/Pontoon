@@ -1,23 +1,29 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Pontoon v1.1</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
-	<div>
-		<p>Dealer's Cards:</p>
-		<d id="dcards" class="cards"></d>
-		<p>Your Cards:</p>
-		<d id="pcards" class="cards"></d>
-	</div>
-	<div>
-		<button id="stick">Stick</button>
-		<button id="twist">Twist</button>
-		<button disabled>Buy</button>
-		<button disabled>Split</button>
-	</div>
-	<script type="text/javascript" src="game.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Pontoon Game | MJP</title>
+		<!--<link rel="stylesheet" type="text/css" href="animation.css">-->
+	</head>
+	<body>
+		<div id="stage"><!-- --></div>
+		<!-- previous functionality
+		<div>	
+			<p>Dealer's Cards:</p>
+			<d id="dcards" class="cards"></d>
+			<p>Your Cards:</p>
+			<d id="pcards" class="cards"></d>
+		</div>
+		<div>
+			<button id="stick">Stick</button>
+			<button id="twist">Twist</button>
+			<button disabled>Buy</button>
+			<button disabled>Split</button>
+		</div>
+		-->
+		<script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript">
+		var game = new pontoon("stage", window, document);
+		</script>
+	</body>
 </html>

@@ -1,10 +1,5 @@
-(function(window, document, undefined) {
+var pontoon = function pontoon(targetId, window, document, undefined) {
     "use strict";
-
-    var dcards = document.getElementById('dcards'),
-        pcards = document.getElementById('pcards'),
-        twistButton = document.getElementById('twist'),
-        stickButton = document.getElementById('stick');
 
     // Card Constructor
     function Card(s, n) {
@@ -236,8 +231,34 @@
                 reset();
             }
         }
-    twistButton.addEventListener('click', twist, false);
-    stickButton.addEventListener('click', stick, false);
     }
+    //Initialise
+    var stage = document.getElementById(targetId),
+        felt = document.createElement("div");
+    felt.id = "felt";
+    stage.appendChild(felt);
+
+    var placeHolder = document.createElement("div");
+    var content = [
+    "<p>Dealer's Cards:</p>",
+    "<d id=\"dcards\" class=\"cards\"></d>",
+    "<p>Your Cards:</p>",
+    "<d id=\"pcards\" class=\"cards\"></d>",
+    "<button id=\"stick\">Stick</button>",
+    "<button id=\"twist\">Twist</button>",
+    "<button disabled>Buy</button>",
+    "<button disabled>Split</button>"
+    ];
+    placeHolder.innerHTML = content.join("\n");
+    felt.appendChild(placeHolder);
+
+    var dcards = document.getElementById('dcards'),
+        pcards = document.getElementById('pcards'),
+        twistButton = document.getElementById('twist'),
+        stickButton = document.getElementById('stick');
+
+    twistButton.addEventListener('click', function() { twist(); }, false);
+    stickButton.addEventListener('click', function() { stick(); }, false);
+
     startRound();
-}(this, this.document));
+};
