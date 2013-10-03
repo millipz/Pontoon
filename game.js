@@ -257,7 +257,7 @@ var pontoon = function pontoon(targetId, window, document, undefined) {
         twistButton = document.getElementById('twist'),
         stickButton = document.getElementById('stick');
 
-    twistButton.addEventListener('click', function() { twist(); }, false);
+    twistButton.addEventListener('click', twist(), false);
     stickButton.addEventListener('click', function() { stick(); }, false);
 
     startRound();
